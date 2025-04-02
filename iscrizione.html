@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="portfolio.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+    <title>Document</title>
+</head>
+<body class="isc_body">
+  <header>
+    <!-- Hidden checkbox used for toggling the mobile menu -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+    <nav class="navbar">
+      <div class="container">
+        <!-- Brand/Logo -->
+        <div class="navbar-brand">
+          <img src="./media/Untitled.jpg" alt="Logo" class="logo" />
+          <p class="name">Mahla SK</p>
+        </div>
+        <!-- Hamburger menu icon for mobile -->
+        <label for="nav-toggle" class="nav-toggler">
+          <span class="toggler-icon"></span>
+          <span class="toggler-icon"></span>
+          <span class="toggler-icon"></span>
+        </label>
+        <!-- Desktop Navigation Links -->
+        <ul class="navbar-nav">
+          <li><a href="main.html">Home</a></li>
+          <li><a href="about.html">Portfolio</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Mobile Offcanvas Menu -->
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="main.html">Home</a></li>
+        <li><a href="about.html">Portfolio</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <div class="isc_intro">
+    <h1>Icrizione</h1>
+    <p>
+      Iscriviti alla nostra newsletter per ricevere aggiornamenti, novità e offerte esclusive direttamente nella tua casella di posta!
+    </p>
+  </div>
+    <div class="isc_main">
+        <form  class="isc_form" method="get">
+            <label for="fname">Nome:</label>
+            <input type="text" id="fname" name="fname"><br><br>
+            <label for="lname">Cognome:</label>
+            <input type="text" id="lname" name="lname"><br><br>
+            <label for="Email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="esempio@gmail.com"><br><br>
+            <label for="dob">Data di nascita:</label>
+            <input type="date" id="dob" name="dob"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="pass" name="pass" minlength="12" required class="password_form"><br><br>
+            <label for="newsletter" class="newsletter">Iscrizione newsletter:<br><br>
+            <input type="radio" id="option1" name="si">si<br><br>
+            <input type="radio" id="option2" name="si">no<br><br>
+            </label>
+            <label for="privacy" class="privacy_radio">le condizioni della <a href="privacy.html" target="_blank">privacy policy<br></a>
+            <input type="radio" id="option1_p" name="accetto">accetto
+            <input type="radio" id="option2_p" name="accetto">non accetto<br><br>
+            </label>
+
+            <input id="sub_btn" type="submit" value="Invia">
+          </form> 
+    </div>
+
+    <footer>
+      
+      <div class="icon-container">
+        <a href="https://github.com/mahla-sk" target="_blank" class="icon github">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mahlasamandook" target="_blank" class="icon linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://wa.me/qr/U6DZGM6AKBFIC1" target="_blank" class="icon whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+      
+      </footer>
+</body>
+</html>

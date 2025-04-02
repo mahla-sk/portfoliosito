@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Navbar without Bootstrap</title>
+  <style>
+    /* Basic reset and typography */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    /* Navbar styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    /* Brand/logo */
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-brand .logo {
+      width: 40px;
+      height: auto;
+    }
+    .navbar-brand .name {
+      margin-left: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+    /* Desktop nav links */
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-nav li {
+      margin-left: 20px;
+    }
+    .navbar-nav li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1em;
+    }
+    /* Mobile toggler (hamburger icon) */
+    .nav-toggler {
+      display: none;
+      cursor: pointer;
+    }
+    .nav-toggler .toggler-icon {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 4px 0;
+      display: block;
+    }
+    /* Hide the checkbox */
+    .nav-toggle {
+      display: none;
+    }
+    /* Offcanvas mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -250px; /* Hidden by default */
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+      padding-top: 60px; /* to clear the fixed navbar */
+      z-index: 999;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 20px;
+    }
+    .mobile-menu ul li {
+      margin-bottom: 20px;
+    }
+    .mobile-menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1em;
+    }
+    /* Checkbox hack: when checked, show mobile menu */
+    .nav-toggle:checked ~ .mobile-menu {
+      right: 0;
+    }
+    /* Media Query: For mobile devices */
+    @media (max-width: 991px) {
+      .navbar-nav {
+        display: none; /* Hide desktop nav links */
+      }
+      .nav-toggler {
+        display: block; /* Show hamburger icon */
+      }
+    }
+    /* Optional: Add some top padding for your page content */
+    .content {
+      padding-top: 70px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Place the hidden checkbox here so it's a sibling of .mobile-menu -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    
+    <nav class="navbar">
+      <div class="container">
+        <!-- Brand/Logo -->
+        <div class="navbar-brand">
+          <img src="Untitled.jpg" alt="Logo" class="logo" />
+          <p class="name">Mahla SK</p>
+        </div>
+        <!-- Hamburger menu icon (visible on mobile) -->
+        <label for="nav-toggle" class="nav-toggler">
+          <span class="toggler-icon"></span>
+          <span class="toggler-icon"></span>
+          <span class="toggler-icon"></span>
+        </label>
+        <!-- Desktop Navigation Links -->
+        <ul class="navbar-nav">
+          <li><a href="main.html">Home</a></li>
+          <li><a href="about.html">Portfolio</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Mobile Offcanvas Menu -->
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="main.html">Home</a></li>
+        <li><a href="about.html">Portfolio</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <div class="content">
+    <!-- Page content goes here -->
+    <p>Your page content goes here...</p>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*12/3 v1*/
+/*14/3 v2*/
+/*25/3 v3*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.5px; 
+    color: white;
+    margin: 0;
+    padding: 0;
+
+
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.navbar, .navbar-nav, .navbar-brand, .nav-link {
+    font-family: 'Space Mono', monospace !important;
+    font-size: 16px; /* You can adjust this to your preference */
+}
+
+.main_body{
+    min-height: 100vh;
+    background-image: url('./media/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+
+   
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: transparent;
+}
+/*
+.logo {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover{
+    color: rgb(158, 35, 224);
+}
+nav a.active{
+    text-decoration: underline;
+    color: rgb(158, 35, 224);
+}
+*/
+
+
+
+
+/*nav*/
+ .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    /* Brand/logo */
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-brand .logo {
+      width: 40px;
+      height: auto;
+    }
+    .navbar-brand .name {
+      margin-left: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+    /* Desktop nav links */
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-nav li {
+      margin-left: 20px;
+    }
+    .navbar-nav li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1em;
+    }
+    /* Mobile toggler (hamburger icon) */
+    .nav-toggler {
+      display: none;
+      cursor: pointer;
+    }
+    .nav-toggler .toggler-icon {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 4px 0;
+      display: block;
+    }
+    /* Hide the checkbox */
+    .nav-toggle {
+      display: none;
+    }
+    /* Offcanvas mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -250px; /* Hidden by default */
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+      padding-top: 60px; /* to clear the fixed navbar */
+      z-index: 999;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 20px;
+    }
+    .mobile-menu ul li {
+      margin-bottom: 20px;
+    }
+    .mobile-menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1em;
+    }
+    /* Checkbox hack: when checked, show mobile menu */
+    .nav-toggle:checked ~ .mobile-menu {
+      right: 0;
+    }
+    /* Media Query: For mobile devices */
+    @media (max-width: 991px) {
+      .navbar-nav {
+        display: none; /* Hide desktop nav links */
+      }
+      .nav-toggler {
+        display: block; /* Show hamburger icon */
+      }
+    }
+    /* Optional: Add some top padding for your page content */
+    .content {
+      padding-top: 70px;
+    }
+
+.js_main{
+   /* background:radial-gradient(at right bottom,rgba(128,0,128,0.8) 15%,rgba(128,0,128,0.8) 20%, rgba(0,0,0,0.87) 60%,rgba(0,0,0,1) 100% );
+    height: 100vh;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    background: radial-gradient(
+        circle at 95% 85%,              
+        rgba(128, 0, 128, 0.8) 0%,     
+        rgba(128, 0, 128, 0.8) 10%,  
+        rgba(128, 0, 128, 0.7) 10%,    
+        rgba(128, 0, 128, 0.7) 20%,  
+        rgba(128, 0, 128, 0.6) 20%,    
+        rgba(128, 0, 128, 0.6) 30%,  
+        rgba(128, 0, 128, 0.5) 30%,    
+        rgba(128, 0, 128, 0.5) 40%,  
+        rgba(128, 0, 128, 0.4) 40%,    
+        rgba(128, 0, 128, 0.4) 50%,  
+        rgba(128, 0, 128, 0.3) 50%,    
+        rgba(128, 0, 128, 0.3) 60%,  
+        rgba(128, 0, 128, 0.2) 60%,    
+        rgba(128, 0, 128, 0.2) 70%,  
+        rgba(128, 0, 128, 0.1) 70%,    
+        rgba(128, 0, 128, 0.1) 80%,  
+        rgba(128, 0, 128, 0.05) 80%,   
+        rgba(128, 0, 128, 0.05) 90%,   
+        #000 90%                       
+      );
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      height: 100vh;
+}
+
+.icon-container {
+    display: flex;
+    gap: 20px; 
+  }
+  
+  .icon {
+    width: 50px; 
+    height: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; 
+    background-color: transparent; 
+    color: white; 
+    font-size: 20px; 
+    transition: background-color 0.3s, transform 0.3s; 
+    text-decoration: none; 
+  }
+  
+  .icon:hover {
+    background-color: rgb(158, 35, 224); 
+    transform: scale(1.1); 
+  }
+  
+  .github:hover {
+    background-color: rgb(158, 35, 224);
+  }
+  
+  .linkedin:hover {
+    background-color: rgb(158, 35, 224);
+  }
+  
+  .whatsapp:hover {
+    background-color: rgb(158, 35, 224); 
+  }
+  
+
+
+/* Make the hamburger lines white */
+.navbar-toggler-icon {
+    background-color: transparent; 
+    
+    background-image: linear-gradient(to top, white 25%, transparent 25%), 
+                      linear-gradient(to bottom, white 25%, transparent 25%);
+    background-size: 100% 3px, 100% 3px;
+    background-position: 0 4px, 0 10px;
+    background-repeat: no-repeat;
+    content: "";
+    width: 30px; 
+    height: 25px; 
+}
+
+.navbar-toggler{
+    border: none;
+}
+
+
+.nav-link.active {
+    color:  rgb(158, 35, 224) !important; 
+}
+
+
+.navbar-brand  {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}
+.navbar-brand img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.name{
+    padding-left: 15px;
+    padding-top: 15px;
+    font-weight: bold;
+    color: white;
+}
+.nav-item me-3{
+    margin-left: 20px;
+}
+.nav-link{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+.navbar .nav-link:hover {
+    color: rgb(158, 35, 224) !important; 
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+.intro_name {
+    text-align:left;
+   /* flex-grow: 1;
+    display: flex;
+    flex-direction: column;*/
+    justify-content: center;
+    margin: 80px;
+    margin-top: 20%;
+    width: 40%;
+    color: white ;
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+    
+    
+}
+
+
+.in_name {
+    font-size: 50px;
+    font-weight: bold;
+    
+}
+
+.in_desc {
+    font-size: 20px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+
+
+}
+.contact_btn{
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    border: white solid 1px;
+    border-radius: 20px;
+    padding: 10px 10px; 
+    overflow: hidden;
+    position: relative;
+    
+    
+}
+.contact_btn:hover{
+    color: rgb(158, 35, 224);
+}
+  
+  .contact_btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(158, 35, 224);
+    transition: width 0.6s ease;
+    bottom: 10px;
+  }
+  
+  .contact_btn:hover::after {
+    width: 85%;
+    
+  }
+
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;  /* Allow cards to wrap to new lines */
+    justify-content: center; /* Center cards horizontally */
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  /* Individual Card */
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    width: 280px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 280px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card Image */
+  .card-img {
+    width: 100%;
+    display: block;
+  }
+  
+  /* Card Content */
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  /* Title */
+  .card-content h3 {
+    margin-bottom: 0.5rem;
+    color: white;
+
+
+  }
+  
+  /* Description Paragraph */
+  .card-content p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    color: rgb(175, 174, 174);
+  }
+  
+  /* Button fixed at the bottom */
+  .card-content a {
+    margin-top: auto; /* pushes the button to the bottom */
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-content a:hover {
+    color:rgb(158, 35, 224) ;
+  }
+  .card-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(158, 35, 224);
+    transition: width 0.6s ease;
+    bottom: 30px;
+  }
+  
+  .card-content:hover::after {
+    width: 70%;
+    
+  }
+  /* Hover Effect for each card */
+  .card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* decrease opacity of other cards when one is hovered */
+  .card-container:hover .card:not(:hover) {
+    opacity: 0.6;
+  }
+  
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color:transparent;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: auto;
+    
+}
+
+footer img {
+    margin: 0 10px;
+}
+
+/*about page*/
+.ab_body{
+    min-height: 100%;
+  background-image: url('./media/Untitled.png');
+  background-size: cover; 
+  background-repeat: no-repeat;  
+  background-position: center;
+  background-size: 200% 200%;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+    flex-grow: 1; 
+    min-height: 100vh;
+  
+}
+.ab_container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.ab_container h3{
+    margin-bottom: 20px;
+}
+
+.ab_main{
+display: flex;
+justify-content: space-between;
+flex: 1;
+align-items: flex-start;
+width: 80%;
+margin: 50px auto;
+gap: 10%;
+}
+.ab_intro{
+    text-align: center;
+    margin: 50px auto;
+    width:  60%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%;
+    
+}
+.ab_intro h1{
+    padding-bottom: 20px;
+}
+.ab_intro p{
+    color: rgb(175, 174, 174);
+    font-size: 16px;
+}
+.ab_desc{
+    width: 45%;
+    margin-right: 20px;
+    line-height: 1.5rem;
+    color: rgb(175, 174, 174);
+}
+.ab_desc h3{
+    color: white;
+}
+.ab_desc p a{
+    color: rgb(158, 35, 224);
+    text-decoration: none;
+}
+.ab_skill{
+    
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.ab_skill h3{
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+.skills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.chip{
+    background-color: transparent;
+    border:white solid 1px;
+    border-radius: 20px;
+    padding: 10px 10px;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+
+/* project page*/
+
+.pro_body,.pri_body,.con_body{
+    min-height: 100%;
+    background-image: url('./media/Untitled.png');
+    background-size: cover; 
+    background-repeat: no-repeat;  
+    background-position: center;
+    background-size: 200% 200%;
+
+    flex-grow: 1; 
+    min-height: 100vh;
+}
+.pro_intro{
+    text-align: center;
+    margin: 50px auto;
+    width:  60%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%;
+    
+}
+.pro_intro h3{
+    padding-bottom: 20px;
+    color: white;
+    
+}
+.pro_intro p{
+    color: rgb(175, 174, 174);
+    font-size: 16px;
+    padding-top: 20px;
+}
+.pro_main{
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+    margin: auto 20%;
+
+    height: 100%;
+}
+
+.pro_rows{
+
+    align-items: center;
+    align-items: center;
+    
+}
+
+.pro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width:max-content ;
+    text-align: center;
+    
+
+}
+.pro img{
+    display: block;
+    width: 100%;
+    width: 300px;
+    height: 150px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0,1);
+}
+.pro img:hover{
+    display: block;
+    width: 100%;
+    width: 320px;
+    height: 170px;
+    transition: 0.3s;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0,1);
+}
+
+.pro p{
+    background-color:transparent;
+    color: white;
+    margin-top: auto;
+    width: 100%;
+}
+
+/*contact page*/
+.con_main{
+    flex: 1;
+    text-align: center;
+    color: #A5C8D6;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    
+}
+.con_intro{
+    text-align: center;
+    margin: 50px auto;
+    width:  60%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%;
+}
+.con_intro p{
+   padding-top: 20px;
+   color:rgb(175, 174, 174) ;
+}
+form input,form label,form textarea{
+    font-size: 16px;
+    padding: 5px;
+    margin: 5px 0;
+}
+form input:focus{
+    border-color: rgb(158, 35, 224);
+    outline: none;
+}
+
+form{
+    width: 300px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    justify-content: center;
+    border-radius: 40px;
+}
+input[type="submit"]{
+    background-color: transparent;
+    color: rgb(175, 174, 174);
+    cursor: pointer;
+    border-radius: 40px;
+    padding: 15px 15px;
+    border: 1px solid white;
+}
+
+input[type="submit"]:hover{
+    color:rgb(158, 35, 224) ;
+}
+
+
+.pro p a{
+    color: white;
+    text-decoration: none;
+}
+
+.pro_rows a:hover{
+    color:rgb(158, 35, 224) ;
+}
+
+.kn_main, .js_main,.privacy_main,.ai_main{
+    flex: 1;
+}
+
+/*privacy page*/
+.privacy_main{
+    color: white;
+    padding: 20px 20px;
+    margin-top: 6%;
+}
+.pri_intro{
+    display: flex;
+    padding: 20px 15px;
+    color: white;
+    
+}
+
+.pri_intro p{
+    padding: 10px 10px;
+    font-size: 20px;
+}
+.pri_desc{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 20px 20px;
+}
+.pri_desc ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: rgb(175, 174, 174);
+}
+.pri_desc ul li a{
+    color: white;
+}
+.pri_desc ul li a:hover{
+    color: rgb(158, 35, 224) ;
+}
+
+.ab_desc p .more-text {
+    display: inline;
+  }
+  .toggle-label {
+    display: none;
+  }
+
+.privacy_radio{
+    display: inline-block;
+}
+
+
+/*responsive adjustments*/
+@media screen and (max-width: 768px) {
+
+    .card-container {
+        padding: 1rem;
+        gap: 1rem;
+      }
+    
+      .card {
+        width: 90%; /* Makes cards wider on small screens */
+        max-width: 400px;
+      }
+
+    
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    .navbar-brand {
+        flex-direction: column;
+    }
+    .navbar-brand .logo{
+        width: 30px;
+        height: 30px;
+    }
+    .navbar-brand .name{
+        font-size: 15px;
+    }
+
+    .navbar-nav .nav-item .nav-link{
+        color: black;
+    }
+    
+    /*nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }*/
+    .intro_name{
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        float: none;
+        padding: 30px 10px;
+        margin-top: 20%;
+        
+    }
+    .contact_btn{
+        margin-top: 30px;
+        font-size: 14px;
+
+    }
+    .in_name {
+        font-size: 20px;
+    }
+    .in_desc {
+        font-size: 14px;
+        width: 100%;
+        float: none;
+        text-align: center;
+    }
+
+    .ab_main {
+        flex-direction: column;
+        text-align: center;
+        max-width: 100%;
+        
+        
+        
+    }
+
+    .ab_intro{
+        margin-top: 20%;
+        width: 90%;
+    }
+    .ab_intro p{
+        font-size: 12px;
+    }
+    .ab_intro h1{
+        font-size: 20px;
+    }
+    .ab_desc {
+        width: 100%;
+        float: none;
+      
+    }
+    .ab_desc p{
+        font-size: 12px;
+        width: 100%;
+        
+    }
+    .ab_desc h3{
+        font-size: 20px;
+    }
+    .ab_desc p .more-text {
+        display: none;
+      }
+      /* When checkbox is checked, show the extra text */
+      #see-more-toggle:checked + .more-text {
+        display: inline;
+      }
+      .toggle-label {
+        display: inline;
+        color: rgb(158, 35, 224);
+        cursor: pointer;
+        text-decoration: none;
+      }
+      #see-more-toggle:checked ~ .toggle-label {
+        display: none;
+      }
+   
+    .ab_skill{
+        margin-right: 20px;
+       display: flex;
+       flex-direction: column;
+       margin-top: 100px;
+       width: 100%;
+       float: none;
+       justify-content: center;
+    }
+    .skills{
+        justify-content: center;
+    }
+
+    .pro_main {
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .pro_intro{
+        margin-top: 20%;
+    }
+    .pro_intro h3{
+        font-size: 20px;
+    }
+    .pro_intro p{
+        font-size: 14px;
+    }
+    .pro_rows {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px; 
+      }
+    
+     
+      .pro {
+        flex: 1 1 calc(50% - 10px); 
+        max-width: calc(50% - 10px);
+        margin: 5px;
+      }
+    
+      
+      .pro img {
+        width: 100%;
+        height: auto;
+      }
+    
+      
+      .pro p {
+        font-size: 0.9rem;
+        text-align: center;
+      }
+      .pro img:hover{
+        display: block;
+        width: 100%;
+        width: 200px;
+        height: 80px;
+        transition: 0.3s;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0,1);
+    }
+
+      .con_intro{
+        margin-top: 20%;
+      }
+      .con_intro h1{
+        font-size: 20px;
+
+      }
+      .con_intro p{
+        font-size: 14px;
+      }
+      form{
+        width: 80%;
+      }
+      #fname,#lname,#email,#textarea{
+        width: 100%;
+      }
+      #sub_btn{
+        width: 90px;
+
+      }
+    footer img {
+        width: 15px;
+        height: 15px;
+        margin: 5px;
+    }
+    footer{
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="portfolio.css">
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    </head>
+    <body class="con_body">
+     <header>
+             <!-- Place the hidden checkbox here so it's a sibling of .mobile-menu -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+  
+  <nav class="navbar">
+    <div class="container">
+      <!-- Brand/Logo -->
+      <div class="navbar-brand">
+        <img src="Untitled.jpg" alt="Logo" class="logo" />
+        <p class="name">Mahla SK</p>
+      </div>
+      <!-- Hamburger menu icon (visible on mobile) -->
+      <label for="nav-toggle" class="nav-toggler">
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+      </label>
+      <!-- Desktop Navigation Links -->
+      <ul class="navbar-nav">
+        <li><a href="main.html">Home</a></li>
+        <li><a href="about.html">Portfolio</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Mobile Offcanvas Menu -->
+  <div class="mobile-menu">
+    <ul>
+      <li><a href="main.html">Home</a></li>
+      <li><a href="about.html">Portfolio</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+        </header>
+        <div class="con_intro">
+            <h1>Contatti</h1><br>
+            <p>Sentiti libero di contattarmi compilando il modulo qui sotto, e ti risponderò il prima possibile.</p>
+          </div>
+
+        <div class="con_main">
+            <form action="" method="get">
+                <label for="fname">Nome:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <label for="lname">Cognome:</label>
+                <input type="text" id="lname" name="lname"><br><br>
+                <label for="Email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="message">Messagio:</label>
+                <textarea id="textarea"> </textarea><br><br>
+
+                <input id="sub_btn" type="submit" value="Invia">
+              </form> 
+        </div>
+
+        <footer>
+          <div class="icon-container">
+            <a href="https://github.com" target="_blank" class="icon github">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" class="icon linkedin">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me" target="_blank" class="icon whatsapp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </footer>
+       
+    </body>
+</html>
